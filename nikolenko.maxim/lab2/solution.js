@@ -11,7 +11,7 @@ export function analyzieString(str) {
       result.letters++;
     } else if (/\d/.test(char)) {
       result.digits++;
-    } else if (/\s/.test(char)) {
+    } else if (char === ' ') {
       result.spaces++;
     } else {
       result.other++;
