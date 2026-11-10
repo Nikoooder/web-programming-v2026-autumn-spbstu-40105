@@ -22,11 +22,7 @@
             <span class="field-label">Текущая библиотека</span>
             <select id="library-select" name="library"></select>
           </label>
-          <button
-            class="button button-danger"
-            type="button"
-            id="delete-library"
-          >
+          <button class="button button-danger" type="button" id="delete-library">
             Удалить библиотеку
           </button>
         </div>
@@ -44,7 +40,7 @@
         <form class="row" data-testid="entity-form">
           <label class="field">
             <span class="field-label">Название</span>
-            <input type="text" name="title" required />
+            <input type="text" name="name" required />
           </label>
           <label class="field">
             <span class="field-label">Автор</span>
@@ -69,9 +65,7 @@
 
       <section class="panel">
         <h2 class="panel-title">Сводка по всем библиотекам</h2>
-        <p class="stat">
-          <strong>Жанры:</strong> <span id="stat-genres"></span>
-        </p>
+        <p class="stat"><strong>Жанры:</strong> <span id="stat-genres"></span></p>
         <p class="stat"><strong>Годы:</strong> <span id="stat-years"></span></p>
         <p class="stat">
           <strong>Авторы:</strong> <span id="stat-authors"></span>

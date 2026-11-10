@@ -54,9 +54,12 @@ export function getUniqueYears(libraries) {
   return [...new Set(years)].sort((a, b) => a - b);
 }
 
-export function getBooksByAuthor(libraries, author) {
+export function findBooksByAuthor(libraries, author) {
   const needle = String(author).trim().toLowerCase();
   return collectBooks(libraries).filter(
     (book) => book.author.toLowerCase() === needle,
   );
 }
+
+// Обратная совместимость с существующим кодом интерфейса.
+export const getBooksByAuthor = findBooksByAuthor;

@@ -33,9 +33,7 @@ function load() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const data = JSON.parse(raw);
-      libraries = data.libraries.map(
-        (item) => new Library(item.name, item.books),
-      );
+      libraries = data.libraries.map((item) => new Library(item.name, item.books));
       current = Math.min(Number(data.current) || 0, libraries.length - 1);
     }
   } catch {
@@ -127,9 +125,7 @@ function renderCards() {
     );
     return;
   }
-  listEl.replaceChildren(
-    ...library.books.map((book) => createCard(library, book)),
-  );
+  listEl.replaceChildren(...library.books.map((book) => createCard(library, book)));
 }
 
 function renderStats() {
@@ -183,7 +179,7 @@ bookForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const data = new FormData(bookForm);
   const book = {
-    title: data.get('title').trim(),
+    title: data.get('name').trim(),
     author: data.get('author').trim(),
     year: data.get('year'),
     genre: data.get('genre').trim(),
