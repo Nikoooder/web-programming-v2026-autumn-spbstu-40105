@@ -22,7 +22,11 @@
             <span class="field-label">Текущая библиотека</span>
             <select id="library-select" name="library"></select>
           </label>
-          <button class="button button-danger" type="button" id="delete-library">
+          <button
+            class="button button-danger"
+            type="button"
+            id="delete-library"
+          >
             Удалить библиотеку
           </button>
         </div>
@@ -60,12 +64,17 @@
 
       <section class="panel">
         <h2 class="panel-title" id="books-title">Книги</h2>
+        <p class="empty" id="empty-note" hidden>
+          В этой библиотеке пока нет книг.
+        </p>
         <div class="cards" data-testid="entity-list"></div>
       </section>
 
       <section class="panel">
         <h2 class="panel-title">Сводка по всем библиотекам</h2>
-        <p class="stat"><strong>Жанры:</strong> <span id="stat-genres"></span></p>
+        <p class="stat">
+          <strong>Жанры:</strong> <span id="stat-genres"></span>
+        </p>
         <p class="stat"><strong>Годы:</strong> <span id="stat-years"></span></p>
         <p class="stat">
           <strong>Авторы:</strong> <span id="stat-authors"></span>

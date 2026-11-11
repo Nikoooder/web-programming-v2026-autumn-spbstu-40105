@@ -15,6 +15,7 @@ let current = 0;
 const statusEl = document.querySelector('#status');
 const selectEl = document.querySelector('#library-select');
 const listEl = document.querySelector('[data-testid="entity-list"]');
+const emptyEl = document.querySelector('#empty-note');
 const booksTitleEl = document.querySelector('#books-title');
 const bookForm = document.querySelector('[data-testid="entity-form"]');
 const libraryForm = document.querySelector('#library-form');
@@ -33,7 +34,9 @@ function load() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const data = JSON.parse(raw);
-      libraries = data.libraries.map((item) => new Library(item.name, item.books));
+      libraries = data.libraries.map(
+        (item) => new Library(item.name, item.books),
+      );
       current = Math.min(Number(data.current) || 0, libraries.length - 1);
     }
   } catch {
@@ -119,13 +122,10 @@ function renderSelect() {
 function renderCards() {
   const library = libraries[current];
   booksTitleEl.textContent = `Книги: ${library.name} — ${library.booksCount}`;
-  if (library.books.length === 0) {
-    listEl.replaceChildren(
-      createElement('p', 'В этой библиотеке пока нет книг.', 'empty'),
-    );
-    return;
-  }
-  listEl.replaceChildren(...library.books.map((book) => createCard(library, book)));
+  emptyEl.hidden = library.books.length > 0;
+  listEl.replaceChildren(
+    ...library.books.map((book) => createCard(library, book)),
+  );
 }
 
 function renderStats() {
