@@ -98,7 +98,7 @@ function createCard(library, book) {
   card.append(
     createElement('h3', book.title, 'card-title'),
     createElement('p', `Автор: ${book.author}`, 'card-text'),
-    createElement('p', `Год: ${book.year}`, 'card-text'),
+    createElement('p', `Год: ${book.year || '—'}`, 'card-text'),
     createElement('p', `Жанр: ${book.genre}`, 'card-text'),
     remove,
   );
@@ -130,11 +130,11 @@ function renderCards() {
 
 function renderStats() {
   const genres = [...groupBooksByGenre(libraries)].map(
-    ([genre, books]) => `${genre} (${books.length})`,
+    ([genre, books]) => `${genre || '—'} (${books.length})`,
   );
   document.querySelector('#stat-genres').textContent = genres.join(', ') || '—';
   document.querySelector('#stat-years').textContent =
-    getUniqueYears(libraries).join(', ') || '—';
+    getUniqueYears(libraries).filter(Boolean).join(', ') || '—';
   document.querySelector('#stat-authors').textContent =
     getUniqueAuthors(libraries).join(', ') || '—';
 }
@@ -179,11 +179,15 @@ bookForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const data = new FormData(bookForm);
   const book = {
-    title: data.get('name').trim(),
-    author: data.get('author').trim(),
-    year: data.get('year'),
-    genre: data.get('genre').trim(),
+    title: String(data.get('name') ?? '').trim(),
+    author: String(data.get('author') ?? '').trim(),
+    year: data.get('year') || 0,
+    genre: String(data.get('genre') ?? '').trim(),
   };
+  if (!book.title) {
+    statusEl.textContent = 'Введите название книги.';
+    return;
+  }
   const library = libraries[current];
   runAction('Добавляем книгу…', () => {
     library.addBook(book);

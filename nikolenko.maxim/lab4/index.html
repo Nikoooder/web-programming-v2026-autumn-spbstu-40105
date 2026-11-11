@@ -41,22 +41,22 @@
 
       <section class="panel">
         <h2 class="panel-title">Новая книга</h2>
-        <form class="row" data-testid="entity-form">
+        <form class="row" data-testid="entity-form" novalidate>
           <label class="field">
             <span class="field-label">Название</span>
             <input type="text" name="name" required />
           </label>
           <label class="field">
             <span class="field-label">Автор</span>
-            <input type="text" name="author" required />
+            <input type="text" name="author" />
           </label>
           <label class="field">
             <span class="field-label">Год</span>
-            <input type="number" name="year" required />
+            <input type="number" name="year" />
           </label>
           <label class="field">
             <span class="field-label">Жанр</span>
-            <input type="text" name="genre" required />
+            <input type="text" name="genre" />
           </label>
           <button class="button" type="submit">Добавить книгу</button>
         </form>
